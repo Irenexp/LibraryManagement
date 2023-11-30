@@ -58,6 +58,6 @@ public class BorrowedBookService {
 
     public List<Book> findBooksBorrowedByReader(Integer readerId) {
         List<BorrowedBook> borrowedBooks = borrowedBookRepository.findByReaderId(readerId);
-        return borrowedBooks.stream().map(BorrowedBook::getBook).collect(Collectors.toList());
+        return borrowedBooks.stream().map(BorrowedBook::getBook).toList();
     }
 }

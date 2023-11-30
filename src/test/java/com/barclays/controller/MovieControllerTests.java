@@ -119,4 +119,65 @@ public class MovieControllerTests {
                 .andExpect(status().isNotFound());
     }
 
+    @Test
+    public void testFindMovieByDirector() throws Exception {
+        String director = "Christopher Nolan";
+        int expectedNumberOfMovies = 1;
+
+                MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/movies/searchByDirector")
+                        .param("director", director)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String contentAsString = result.getResponse().getContentAsString();
+        Movie[] movies = mapper.readValue(contentAsString, Movie[].class);
+
+        assertEquals(expectedNumberOfMovies, movies.length);
+        for (Movie movie : movies) {
+            assertTrue(movie.getDirector().contains(director), "Movie should have " + director + " as a lead actor");
+        }
+    }
+
+    @Test
+    public void testFindMovieByActor() throws Exception {
+        String actor = "Leonardo DiCaprio";
+        int expectedNumberOfMovies = 3;
+
+                MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/movies/searchByActor")
+                        .param("actor", actor)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String contentAsString = result.getResponse().getContentAsString();
+        Movie[] movies = mapper.readValue(contentAsString, Movie[].class);
+
+        assertEquals(expectedNumberOfMovies, movies.length);
+    }
+
+    @Test
+    public void testFindMovieByGenre() throws Exception {
+        String genre = "Sci-Fi";
+        int expectedNumberOfMovies = 1;
+
+                MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/movies/searchByGenre")
+                        .param("genre", genre)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String contentAsString = result.getResponse().getContentAsString();
+        Movie[] movies = mapper.readValue(contentAsString, Movie[].class);
+
+        assertEquals(expectedNumberOfMovies, movies.length);
+        for (Movie movie : movies) {
+            assertEquals(genre, movie.getGenre());
+        }
+    }
+
+
 }

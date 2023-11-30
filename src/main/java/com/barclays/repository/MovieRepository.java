@@ -1,6 +1,5 @@
 package com.barclays.repository;
 
-import com.barclays.model.Book;
 import com.barclays.model.Movie;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

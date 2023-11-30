@@ -1,6 +1,5 @@
 package com.barclays.service;
 
-import com.barclays.model.Author;
 import com.barclays.model.Book;
 
 import java.util.List;
@@ -15,7 +14,7 @@ public interface BookService {
 
     public Book saveBook(Book book);
 
-    void deleteBook(Book book);
+    public void deleteBook(Book book);
 
     List<Book> findBookByGenre(String genre);
 

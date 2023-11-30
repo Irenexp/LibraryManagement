@@ -1,4 +1,3 @@
-INSERT INTO address (id, line_one, line_two, state, postal_code, country) VALUES (100,'123 Main St', 'Apt 101', 'StateName', '12345', 'UK');
 INSERT INTO address (id,line_one, line_two, state, postal_code, country) VALUES (200,'456 Elm St', 'Suite 202', 'AnotherState', '23456', 'US');
 INSERT INTO address (id, line_one, line_two, state, postal_code, country) VALUES (300, '123 Oak Street', 'Apt. 1', 'SomeState', '12345', 'UK');
 INSERT INTO address (id, line_one, line_two, state, postal_code, country) VALUES (400, '789 Maple Avenue', '', 'GreenState', '54321', 'UK');
@@ -27,8 +26,6 @@ INSERT INTO lead_actor (id,name, movie_id) VALUES (100,'Leonardo DiCaprio', 500)
 INSERT INTO lead_actor (id,name, movie_id) VALUES (200,'Tobey Maguire', 600);
 INSERT INTO lead_actor (id,name, movie_id) VALUES (300,'Leonardo DiCaprio', 600);
 INSERT INTO lead_actor (id,name, movie_id) VALUES (400,'Leonardo DiCaprio', 700);
-
-INSERT INTO librarian (id,name, address_id, phone_number, email) VALUES (100,'Alice Smith', 100, '555-0100', 'alice.smith@library.com');
 
 INSERT INTO reader (id,name, address_id, phone_number, email) VALUES (100,'Bob Johnson', 200, '555-0200', 'bob.johnson@email.com');
 INSERT INTO reader (id, name, address_id, phone_number, email) VALUES (200, 'Alice Smith', 300, '555-0300', 'alice.smith@email.com');

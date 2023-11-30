@@ -59,7 +59,7 @@ public class PeriodicalControllerTests {
 
     @Test
     public void testGetPeriodicalById() throws Exception {
-        Integer id = 1;
+        Integer id = 800;
         mockMvc.perform(MockMvcRequestBuilders.get("/periodicals/" + id)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -92,7 +92,7 @@ public class PeriodicalControllerTests {
 
     @Test
     public void testDeletePeriodical() throws Exception {
-        Integer idToDelete = 1;
+        Integer idToDelete = 800;
         mockMvc.perform(MockMvcRequestBuilders.delete("/periodicals/" + idToDelete))
                 .andExpect(status().isOk());
     }

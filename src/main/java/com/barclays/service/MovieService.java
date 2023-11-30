@@ -1,6 +1,5 @@
 package com.barclays.service;
 
-import com.barclays.model.Book;
 import com.barclays.model.Movie;
 
 import java.util.List;

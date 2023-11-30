@@ -8,7 +8,8 @@ import java.util.List;
 public interface BorrowedBookRepository extends CrudRepository<BorrowedBook, Integer> {
     List<BorrowedBook> findByReaderId(Integer readerId);
     List<BorrowedBook> findByReturnDateIsNull();
-    List<BorrowedBook> findByReaderIdAndReturnDateIsNull(Integer readerId);
 
     boolean existsByBookIdAndReturnDateIsNull(Integer bookId);
+
+    List<BorrowedBook> findByBookId(Integer bookId);
 }

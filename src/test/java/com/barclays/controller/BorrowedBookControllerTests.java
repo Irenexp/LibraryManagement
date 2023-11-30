@@ -58,6 +58,34 @@ public class BorrowedBookControllerTests {
         assertNotNull(borrowedBookDTO.getBorrowDate());
     }
 
+    @Test
+    public void testReturnBook() throws Exception {
+        Integer borrowedBookId = 100;
 
+                MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/borrowBooks/return/" + borrowedBookId)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andReturn();
 
+        String contentAsString = result.getResponse().getContentAsString();
+        BorrowedBook returnedBook = mapper.readValue(contentAsString, BorrowedBook.class);
+
+        assertNotNull(returnedBook.getReturnDate());
+    }
+
+    @Test
+    public void testGetCurrentBorrowedBooks() throws Exception {
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/borrowBooks/current")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String contentAsString = result.getResponse().getContentAsString();
+        BorrowedBook[] borrowedBooks = mapper.readValue(contentAsString, BorrowedBook[].class);
+
+        for (BorrowedBook borrowedBook : borrowedBooks) {
+            assertNotNull(borrowedBook.getBorrowDate());
+            assertNull(borrowedBook.getReturnDate());
+        }
+    }
 }

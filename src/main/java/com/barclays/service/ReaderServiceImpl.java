@@ -1,7 +1,5 @@
 package com.barclays.service;
 
-import com.barclays.model.Book;
-import com.barclays.model.BorrowedBook;
 import com.barclays.model.Reader;
 import com.barclays.repository.BorrowedBookRepository;
 import com.barclays.repository.ReaderRepository;
@@ -11,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class ReaderServiceImpl implements ReaderService {

@@ -118,10 +118,10 @@ public class BookControllerTestsWithMockHttpRequest {
     }
 
     @Test
-    public void testDeleteBook() throws Exception {
+    public void testDeleteNotBorrowedBook() throws Exception {
 
         Book bookToDelete = new Book();
-        bookToDelete.setId(400);
+        bookToDelete.setId(600);
 
         mockMvc.perform(MockMvcRequestBuilders.delete("/books")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -133,7 +133,37 @@ public class BookControllerTestsWithMockHttpRequest {
                 .andExpect(status().isNotFound());
     }
 
+//    @Test
+//    public void testDeleteBorrowedBook() throws Exception {
+//
+//        Book bookToDelete = new Book();
+//        bookToDelete.setId(400);
+//
+//        mockMvc.perform(MockMvcRequestBuilders.delete("/books")
+//                        .contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isBadRequest())
+//                .andExpect(MockMvcResultMatchers.content().string("Cannot delete book as it has borrowed records."));
+//
+//    }
 
+    @Test
+    public void testFindBookByGenre() throws Exception {
+        String genre = "Fantasy";
+        int expectedNumberOfBooks = 5;
+
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/books/searchByGenre")
+                        .param("genre", genre)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String contentAsString = result.getResponse().getContentAsString();
+        Book[] books = mapper.readValue(contentAsString, Book[].class);
+
+        assertEquals(expectedNumberOfBooks, books.length);
+
+    }
 }
 
 
