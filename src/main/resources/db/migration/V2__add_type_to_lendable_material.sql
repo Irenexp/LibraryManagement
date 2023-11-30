@@ -1,0 +1,1 @@
+ALTER TABLE lendable_material ADD COLUMN type VARCHAR(50);
