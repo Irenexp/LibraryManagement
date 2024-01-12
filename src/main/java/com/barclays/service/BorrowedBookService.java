@@ -8,6 +8,7 @@ import com.barclays.repository.BorrowedBookRepository;
 import com.barclays.repository.ReaderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -22,6 +23,7 @@ public class BorrowedBookService {
     @Autowired
     private ReaderRepository readerRepository;
 
+    @Transactional
     public BorrowedBook borrowBook(Integer bookId, Integer readerId) {
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new RuntimeException("Book not found"));
